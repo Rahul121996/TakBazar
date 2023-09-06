@@ -11,7 +11,6 @@ namespace TakBazar.Entites
         public Category category { get; set; }
 
         public decimal Price { get; set; }
-
-        public int MyProperty { get; set; }
+        
     }
 }
