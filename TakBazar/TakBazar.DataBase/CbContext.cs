@@ -8,11 +8,15 @@ using TakBazar.Entites;
 
 namespace TakBazar.DataBase
 {
-    public class CbContext : DbContext
+    public class CbContext : DbContext,IDisposable
     {
-        public CbContext() : base("TakBazarConnection")
+        public CbContext() : base("name=TakBazarConnection")
         {
 
+        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
         public DbSet<Product> products { get; set; }
 

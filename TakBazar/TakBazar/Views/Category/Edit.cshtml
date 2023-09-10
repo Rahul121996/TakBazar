@@ -1,0 +1,23 @@
+﻿@model TakBazar.Entites.Category
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Category</h2>
+
+<form method="post">
+    <div class="container">
+        <div class="row" style="padding:10px;">
+            <label>Name</label>
+            <input name="Name" value="@Model.Name" class="form-control" />
+        </div>
+        <div class="row" style="padding:10px;">
+            <label>Description</label>
+            <input name="Description" value="@Model.Description" class="form-control" />
+        </div>
+        <div class="row" style="padding:10px;">
+            <button type="submit">Update</button>
+        </div>
+    </div>
+</form>
+
