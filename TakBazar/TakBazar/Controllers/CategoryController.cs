@@ -27,8 +27,13 @@ namespace TakBazar.Controllers
         [HttpPost]
         public ActionResult Create(Category catgory)
         {
-            categoryServices.SaveCategory(catgory);
-            return RedirectToAction("Index", "Category");
+            if (ModelState.IsValid)
+            {
+                
+                categoryServices.SaveCategory(catgory);
+                return RedirectToAction("Index", "Category");
+            }
+            return View();
         }
         [HttpGet]
         public ActionResult Edit(int ID)

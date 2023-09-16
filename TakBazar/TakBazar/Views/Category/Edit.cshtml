@@ -9,15 +9,38 @@
     <div class="container">
         <div class="row" style="padding:10px;">
             <label>Name</label>
-            <input name="Name" value="@Model.Name" class="form-control" />
+            <div style="display:flex;">
+                <input name="Name" value="@Model.Name" class="form-control" />
+                <span id="ErrorName"></span>
+            </div>
         </div>
         <div class="row" style="padding:10px;">
             <label>Description</label>
-            <input name="Description" value="@Model.Description" class="form-control" />
+            <div style="display:flex;">
+                <input name="Description" value="@Model.Description" class="form-control" />
+                <span id="ErrorDesc"></span>
+            </div>
         </div>
         <div class="row" style="padding:10px;">
             <button type="submit">Update</button>
         </div>
     </div>
 </form>
+
+<script>
+    debugger;
+
+    const form = document.querySelector("form");
+    form.addEventListener("click", allvalidate, false);
+    function allvalidate(event) {
+        if ($("[name='Name']").val() == '') {
+            $('[id$=ErrorName]').text("Please Enter name")
+            event.preventDefault();
+        }
+        else if ($("[name='Description']").val() == '') {
+            $('[id$=ErrorDesc]').text("Please Enter Description ")
+            event.preventDefault();
+        }
+    }
+</script>
 

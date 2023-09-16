@@ -4,7 +4,7 @@
     Html.EnableClientValidation();
 }
 
-<h2>Create Category</h2>
+<h2>Create Product</h2>
 
 <form method="post">
     <label>Name</label>
@@ -15,6 +15,11 @@
     <label>Description</label>
     <input name="Description" />
     <span id="ErrorDesc"></span>
+    <br />
+
+    <label>Price</label>
+    <input name="Price" />
+    <span id="ErrorPrice"></span>
     <br />
 
     <button type="submit">Save</button>
@@ -33,6 +38,10 @@
         }
         else if ($("[name='Description']").val() == '') {
             $('[id$=ErrorDesc]').text("Please Enter Description ")
+            event.preventDefault();
+        }
+        else if ($("[name='Price']").val() == '') {
+            $('[id$=ErrorPrice]').text("Please Enter Price")
             event.preventDefault();
         }
     }

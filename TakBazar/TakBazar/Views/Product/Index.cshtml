@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container" style="margin-top:10px;">
+    <form method="post" action="/Product/ProductTable">
+        <div class="container">
+            <div class="row">
+                <input name="Search" />
+                <button type="button" id="btnSearch">Search</button>
+                <button type="button" id="btnNew">New</button>
+            </div>
+        </div>
+    </form>
+</div>
+@{
+    Html.RenderAction("ProductTable");
+    //Html.RenderAction("Create");
+}
+
+<script>
+    $('[id$=btnSearch]').on('click', function () {
+
+        var SearchVal = $('[name=Search]').val();
+        var request = $.ajax({
+            url: "/Product/ProductTable",
+            //type: "Get",
+            data: { Search: SearchVal },
+            //dataType: "html"
+        });
+
+        request.done(function (response) {
+            $('[id$=divTable]').html(response);
+        });
+
+        request.fail(function (jqXHR, textStatus) {
+            alert("Failed" );
+        });
+    })
+</script>
+
