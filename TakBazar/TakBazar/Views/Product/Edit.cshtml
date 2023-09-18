@@ -1,0 +1,75 @@
+﻿@model Product
+
+@{
+    ViewBag.Title = "Edit";
+    Html.EnableClientValidation();
+}
+
+<h2>Edir Product</h2>
+
+<form id="EditProduct">
+     
+    <input type="hidden" name="ID" value="@Model.ID"/>
+
+    <label>Name</label>
+    <input name="Name"  value="@Model.Name"/>
+    <span id="ErrorName"></span>
+    <br />
+
+    <label>Description</label>
+    <input name="Description" value="@Model.Description"/>
+    <span id="ErrorDesc"></span>
+    <br />
+
+    <label>Price</label>
+    <input name="Price" value="@Model.Price"/>
+    <span id="ErrorPrice"></span>
+    <br />
+
+    <button id="btnUpdate" type="button">Save</button>
+
+
+</form>
+<script>
+    debugger;
+
+    //const form = document.querySelector("form");
+    //form.addEventListener("click", allvalidate, false);
+    //function allvalidate(event) {
+    //    if ($("[name='Name']").val() == '') {
+    //        $('[id$=ErrorName]').text("Please Enter name")
+    //        event.preventDefault();
+    //    }
+    //    else if ($("[name='Description']").val() == '') {
+    //        $('[id$=ErrorDesc]').text("Please Enter Description ")
+    //        event.preventDefault();
+    //    }
+    //    else if ($("[name='Price']").val() == '') {
+    //        $('[id$=ErrorPrice]').text("Please Enter Price")
+    //        event.preventDefault();
+    //    }
+    //}
+
+    $('[id$=btnUpdate]').on('click', function () {
+
+        var SearchVal = $('[name=Search]').val();
+        var request = $.ajax({
+            type : "POST",
+            url: "/Product/Edit",
+            data: $('[id$=EditProduct]').serialize(),
+        });
+
+        request.done(function (response) {
+            $('[id$=divTable]').html(response);
+            $('[id$=actionMethod]').html('');
+        });
+
+        request.fail(function (jqXHR, textStatus) {
+            alert("Failed");
+        });
+    })
+
+</script>
+
+
+

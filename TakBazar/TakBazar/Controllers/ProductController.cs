@@ -41,5 +41,32 @@ namespace TakBazar.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Edit(int ID)
+        {
+            var Product = productServices.GetProduct(ID);
+            return PartialView(Product);
+        }
+        [HttpPost]
+        public ActionResult Edit(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+
+                productServices.Updateproduct(product);
+                return RedirectToAction("ProductTable");
+            }
+            return View();
+        }
+
+        public ActionResult Delete(int ID)
+        {
+            if (productServices.DeleteCategories(ID))
+                return RedirectToAction("ProductTable");
+
+
+            return View();
+        }
     }
 }

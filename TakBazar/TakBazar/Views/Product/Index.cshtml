@@ -14,10 +14,14 @@
         </div>
     </form>
 </div>
+<div id="actionMethod">
+
+</div>
 @{
     Html.RenderAction("ProductTable");
     //Html.RenderAction("Create");
 }
+
 
 <script>
     $('[id$=btnSearch]').on('click', function () {
@@ -38,5 +42,60 @@
             alert("Failed" );
         });
     })
+    $('[id$=btnNew]').on('click', function () {
+        var request = $.ajax({
+            url: "/Product/Create",
+           
+        });
+
+        request.done(function (response) {
+            $('[id$=actionMethod]').html(response);
+        });
+
+        request.fail(function (jqXHR, textStatus) {
+            alert("Failed");
+        });
+    })
+
+    $('.editbtn').on('click', function () {
+        var request = $.ajax({
+            url: "/Product/Edit",
+            data: {
+                ID :$(this).attr('data-id')
+            }
+
+        });
+
+        request.done(function (response) {
+            $('[id$=actionMethod]').html(response);
+        });
+
+        request.fail(function (jqXHR, textStatus) {
+            alert("Failed");
+        });
+    })
+
+    $('.deletebtn').on('click', function () {
+        debugger;
+
+        if (confirm("do you want Delete")) {
+            var request = $.ajax({
+                url: "/Product/Delete",
+                data: {
+                    ID: $(this).attr('data-id')
+                }
+
+            });
+
+            request.done(function (response) {
+                $('[id$=divTable]').html(response);
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                alert("Failed");
+            });
+        }
+    })
+
 </script>
 
